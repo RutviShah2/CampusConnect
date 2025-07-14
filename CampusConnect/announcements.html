@@ -1,0 +1,64 @@
+<!-- ANNOUNCEMENTS.HTML -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Announcements | CampusConnect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="light">
+  <header>
+    <div class="navbar">
+      <h1><strong>🎓 CampusConnect</strong></h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="events.html">Events</a>
+        <a href="faq.html">FAQ</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>📢 Announcements</h2>
+      <p>Stay updated with the latest announcements straight from your campus authorities, club coordinators, and event organizers. Be it academic schedules, festival prep, or surprise holidays — you’ll find it all here! 📌✨</p>
+
+      <h3>📚 Academic Updates</h3>
+      <ul class="features">
+        <li>📖 Mid-term exams will begin from <strong>September 10, 2025</strong>. Timetable will be released soon.</li>
+        <li>📝 Assignment submissions for Semester 3 are due by <strong>August 25, 2025</strong>.</li>
+        <li>📢 Attendance cutoff for eligibility: <strong>September 5, 2025</strong>.</li>
+      </ul><br>
+
+      <h3>🎉 Campus Events</h3>
+      <ul class="features">
+        <li>✨ Classes will remain suspended on <strong>August 15th</strong> due to Independence Day celebrations. Don’t forget to attend the flag hoisting ceremony at 8:00 AM! 🇮🇳</li>
+        <li>🎭 Cultural Fest pre-event orientation is scheduled for <strong>August 5, 2025</strong> in the Seminar Hall.</li>
+        <li>🏁 Registrations for Tech Expo stalls will close by <strong>October 5, 2025</strong>.</li>
+      </ul><br>
+
+      <h3>🎓 Club & Community</h3>
+      <ul class="features">
+        <li>🌟 New club registrations are open till <strong>July 20, 2025</strong>. Don’t miss the chance to be part of amazing communities! 🎨🕺</li>
+        <li>📋 Photography Club's Orientation will be held on <strong>July 25, 2025</strong> in Room B206.</li>
+        <li>🎧 Music Club is hosting auditions for new members on <strong>August 2, 2025</strong>.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 <strong>CampusConnect</strong> | Announcements</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const currentTheme = body.getAttribute('data-theme');
+      body.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+    }
+  </script>
+</body>
+</html>

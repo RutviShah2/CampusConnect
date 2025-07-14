@@ -1,0 +1,61 @@
+<!-- CLUBS.HTML -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clubs | CampusConnect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+  <header>
+    <div class="navbar">
+      <h1><strong>🎓 CampusConnect</strong></h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="events.html">Events</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>🎭 Student Clubs</h2>
+      <p>Clubs are the heartbeat of campus life! Whether you're a coder, artist, speaker, or just looking for a community — there’s a place here waiting for you. 🌈💬  
+      Explore your interests, meet passionate people, and create unforgettable college moments.</p>
+      
+      <ul class="features">
+        <li><strong>🎵 Music Club:</strong> A haven for vocalists, instrumentalists, and music lovers. From jamming sessions to on-stage performances — this is where melodies come alive. 🎤🎸</li>
+        
+        <li><strong>👨‍💻 Coding Club:</strong> Join workshops, participate in hackathons, and build cool projects with fellow tech geeks. Whether you're a beginner or a pro, you'll fit right in! 💻🚀</li>
+        
+        <li><strong>📝 Literary Club:</strong> Words matter here. Engage in debates, writing competitions, poetry nights, and book discussions that inspire deep thought and creativity. 📚🖋️</li>
+        
+        <li><strong>🎭 Drama Club:</strong> Express your inner artist through acting, direction, stagecraft, and theatre magic. Lights, camera, action! 🎬🎭</li>
+        
+        <li><strong>📸 Photography Club:</strong> Capture campus life one frame at a time. Join photo walks, edit workshops, and showcase your best clicks in exhibitions. 📷✨</li>
+        
+        <li><strong>🎨 Art & Design Club:</strong> From sketching and painting to digital design — this club brings imagination to life. Expect collabs, mural-making, and design challenges. 🖌️🧠</li>
+        
+        <li><strong>♟️ Strategy Club:</strong> For chess champs, sudoku solvers, and logic puzzle lovers. Sharpen your mind while having fun. 🧩🕹️</li>
+      </ul>
+
+      <p style="margin-top: 1.5rem;">🎯 Want to start a new club or join an existing one? Head over to the <a href="register.html"><strong>Registration Page</strong></a> and become a part of something amazing today!</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 <strong>CampusConnect</strong> | Clubs</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const currentTheme = body.getAttribute('data-theme');
+      body.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+    }
+  </script>
+</body>
+</html>
