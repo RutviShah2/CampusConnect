@@ -1,0 +1,47 @@
+<!-- CONTACT.HTML -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | CampusConnect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+  <header>
+    <div class="navbar">
+      <h1><strong>🎓 CampusConnect</strong></h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="faq.html">FAQ</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>📩 Contact Us</h2>
+      <p>Hey there! 👋 Whether you’ve got a question, a cool idea, or just want to say hi — we’d love to hear from you. CampusConnect is built for students, and your thoughts make it better every day. 💬💙</p>
+
+      <p><strong>📧 Email:</strong> <a href="mailto:support@campusconnect.in">support@campusconnect.in</a></p>
+      <p><strong>📸 Instagram:</strong> <a href="https://instagram.com/campusconnect.in" target="_blank">@campusconnect.in</a></p>
+
+      <p style="margin-top: 2rem;">✨ You’re not just a user, you’re part of our community. Keep shining, keep growing, and remember — this platform is *your* space. 🌈</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 <strong>CampusConnect</strong> | Contact</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const currentTheme = body.getAttribute('data-theme');
+      body.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+    }
+  </script>
+</body>
+</html>

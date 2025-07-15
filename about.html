@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | CampusConnect</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body data-theme="light">
+  <header>
+    <div class="navbar">
+      <h1><strong>🎓 CampusConnect</strong></h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="notes.html">Notes</a>
+        <a href="about.html">About</a>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <h2>💡 About CampusConnect</h2>
+        <p>Built by students, for students. 💙</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>📘 What is CampusConnect?</h2>
+      <p><strong>CampusConnect</strong> is a centralized platform designed to simplify college life. From accessing notes and announcements to tracking events, documents, and memories — everything is available in one place. ✨</p>
+      <p>In the chaos of classes, deadlines, club meetings, and campus fests, it's easy to feel overwhelmed. CampusConnect brings calm to that chaos by offering a one-stop solution that keeps everything neat, accessible, and beautifully organized. 🎓📅</p>
+      <p>No more jumping across 5 apps or digging through WhatsApp forwards — CampusConnect keeps it all in one clean, welcoming place. 🤝</p>
+    </section>
+
+    <section class="section">
+      <h2>🎯 Our Purpose</h2>
+      <p>CampusConnect exists to help students stay organized, informed, and involved. We know how messy college schedules can get — that’s why we’re here to make it easier, smarter, and a little more fun! 🎉</p>
+      <p>It’s not just about tools — it’s about *experience*. We want students to *feel seen*, supported, and connected through this platform. From registering for events to rewatching memories from last semester, CampusConnect grows with you every step of the way. 🛤️</p>
+      <p>It’s your planner, your gallery, your info hub — and most importantly, your comfort space in the digital campus. 🌻</p>
+    </section>
+
+    <section class="section">
+      <h2>🛠️ Made With Love</h2>
+      <p>This project was beautifully crafted by Rutvi Shah 💻 — a passionate student who loves tech, design, and creating useful things that others can enjoy. 🌈</p>
+      <p>Every line of code, every icon, every section was built with one thought in mind — “How can I make a student’s life just a little bit easier and a lot more joyful?” ☁️</p>
+      <p>CampusConnect reflects the spirit of students — vibrant, evolving, and full of dreams. And Rutvii poured her heart into making sure every click here feels like home. 🥰</p>
+    </section>
+
+    <section class="section">
+      <h2>🌟 Vision</h2>
+      <p>To become every student’s go-to portal — where everything they need, from academic resources to personal memories, lives in one beautiful, connected place. 📚🧠📸</p>
+      <p>We dream of campuses across the world using this kind of digital tool — a space where no student feels lost or disconnected. 💭</p>
+      <p>Because college is more than assignments and lectures — it’s about friendships, chaos, achievements, late-night chai, laughter, heartbreak, and becoming who you’re meant to be. And CampusConnect hopes to be part of that journey — quietly supporting you in the background. 🌙✨</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 <strong>CampusConnect</strong> | About</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const currentTheme = body.getAttribute("data-theme");
+      body.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
+    }
+  </script>
+</body>
+</html>
