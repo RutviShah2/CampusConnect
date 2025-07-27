@@ -1,2 +1,0 @@
-# CampusConnect
-CampusConnect
