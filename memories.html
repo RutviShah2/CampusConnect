@@ -1,11 +1,93 @@
-<!-- MEMORIES.HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Memories | CampusConnect</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    /* 🌠 Slider */
+    .slider {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 30px;
+    }
+    .slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: fade 0.7s ease-in-out;
+    }
+    @keyframes fade {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+
+    /* 📸 Gallery */
+    .memories-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 0 20px 40px;
+    }
+    .memory-img-wrapper {
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .memory-img-wrapper:hover {
+      transform: scale(1.03);
+    }
+    .memory-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 🔍 Popup */
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .popup-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  animation: fadeIn 0.4s ease;
+}
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
 </head>
 <body data-theme="light">
   <header>
@@ -20,36 +102,68 @@
       </nav>
     </div>
   </header>
+
   <main>
+    <!-- 🌠 Slider -->
+    <div class="slider">
+      <img src="img5.jpg" alt="Featured Memory" id="sliderImage">
+    </div>
+
     <section class="section">
       <h2>Campus Memories</h2>
-      <p>Some snapshots from our journey together!</p>
+      <p style="text-align:center;">Some snapshots from our journey together!</p>
       <div class="modules memories-gallery">
         <div class="memory-img-wrapper"><img src="img5.jpg" alt="Event 1" class="memory-img"></div>
         <div class="memory-img-wrapper"><img src="img2.jpg" alt="Event 2" class="memory-img"></div>
         <div class="memory-img-wrapper"><img src="img8.jpg" alt="Event 3" class="memory-img"></div>
         <div class="memory-img-wrapper"><img src="img6.jpg" alt="Event 4" class="memory-img"></div>
         <div class="memory-img-wrapper"><img src="img9.jpg" alt="Event 5" class="memory-img"></div>
-        <div class="memory-img-wrapper"><img src="img.jpg" alt="Event 6" class="memory-img"></div>
+        <div class="memory-img-wrapper"><img src="img4.jpg" alt="Event 6" class="memory-img"></div>
         <div class="memory-img-wrapper"><img src="img7.jpg" alt="Event 7" class="memory-img"></div>
         <div class="memory-img-wrapper"><img src="img3.jpg" alt="Event 8" class="memory-img"></div>
         <div class="memory-img-wrapper"><img src="img1.jpg" alt="Event 9" class="memory-img"></div>
         <div class="memory-img-wrapper"><img src="img10.jpg" alt="Event 10" class="memory-img"></div>
-        <div class="memory-img-wrapper"><img src="img12.jpg" alt="Event 10" class="memory-img"></div>
-        <div class="memory-img-wrapper"><img src="img11.jpg" alt="Event 10" class="memory-img"></div>
+        <div class="memory-img-wrapper"><img src="img12.jpg" alt="Event 11" class="memory-img"></div>
+        <div class="memory-img-wrapper"><img src="img11.jpg" alt="Event 12" class="memory-img"></div>
       </div>
     </section>
   </main>
+
   <footer>
     <p>&copy; 2025 <strong>CampusConnect</strong> | Memories </p>
   </footer>
+
+  <!-- 🔍 Image Popup -->
+  <div class="popup-overlay" id="popup">
+    <img id="popup-img" src="" alt="Full View">
+  </div>
+
   <script>
     function toggleTheme() {
       const body = document.body;
-      const currentTheme = body.getAttribute('data-theme');
-      body.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+      const currentTheme = body.getAttribute("data-theme");
+      body.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
     }
+
+    // 🔄 Slider Logic
+    const sliderImages = ["img5.jpg", "img6.jpg", "img8.jpg", "img9.jpg"];
+    let current = 0;
+    const sliderImg = document.getElementById("sliderImage");
+    setInterval(() => {
+      current = (current + 1) % sliderImages.length;
+      sliderImg.src = sliderImages[current];
+    }, 3000);
+
+    // 🔍 Popup Logic
+    const popup = document.getElementById("popup");
+    const popupImg = document.getElementById("popup-img");
+    document.querySelectorAll(".memory-img").forEach(img => {
+      img.addEventListener("click", () => {
+        popupImg.src = img.src;
+        popup.style.display = "flex";
+      });
+    });
+    popup.addEventListener("click", () => popup.style.display = "none");
   </script>
-  <script src="main.js"></script>
 </body>
 </html>

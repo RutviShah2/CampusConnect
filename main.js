@@ -68,5 +68,3 @@ function showToast(msg) {
   }, 1800);
 }
 
-// ... Continue simplifying the rest like this...
-
