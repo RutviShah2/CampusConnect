@@ -67,4 +67,23 @@ function showToast(msg) {
     setTimeout(() => toast.remove(), 400);
   }, 1800);
 }
+// 8. Register Form Popup
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("form");
+  const popup = document.getElementById("popup");
+  const closeBtn = document.querySelector("#popup button");
+
+  if (form && popup && closeBtn) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      popup.style.display = "block";
+    });
+
+    closeBtn.addEventListener("click", () => {
+      popup.style.display = "none";
+      form.reset();
+      showToast("You’re all set! 🚀");
+    });
+  }
+});
 
