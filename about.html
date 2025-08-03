@@ -6,21 +6,231 @@
   <title>About | CampusConnect</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Universal box-sizing fix */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    /* About Page Enhancements */
+    .about-hero {
+      text-align: center;
+      padding: 60px 30px 40px;
+      background: linear-gradient(135deg, rgba(108,99,255,0.05), rgba(72,198,239,0.05));
+      border-radius: 24px;
+      margin: 20px auto 40px;
+      max-width: 900px;
+      animation: fadeInUp 0.8s ease forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(108,99,255,0.03), transparent);
+      animation: rotateConic 20s linear infinite;
+      z-index: -1;
+    }
+
+    .about-hero h1 {
+      font-size: 2.5rem;
+      color: #6c63ff;
+      margin-bottom: 15px;
+      animation: slideDown 0.8s ease forwards;
+    }
+
+    .about-hero p {
+      font-size: 1.3rem;
+      color: #666;
+      margin: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+    }
+
+    .about-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .about-section {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 32px rgba(108,99,255,0.1);
+      border: 1px solid rgba(108,99,255,0.1);
+      animation: slideInUp 0.8s ease forwards;
+      transition: all 0.3s ease;
+    }
+
+    .about-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(108,99,255,0.15);
+    }
+
+    .about-section h2 {
+      color: #6c63ff;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .about-section p {
+      color: #666;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 15px;
+      animation: fadeInText 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .about-section:nth-child(2) { animation-delay: 0.1s; }
+    .about-section:nth-child(3) { animation-delay: 0.2s; }
+    .about-section:nth-child(4) { animation-delay: 0.3s; }
+
+    .about-section:nth-child(2) p { animation-delay: 0.4s; }
+    .about-section:nth-child(3) p { animation-delay: 0.5s; }
+    .about-section:nth-child(4) p { animation-delay: 0.6s; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 30px 25px;
+      box-shadow: 0 8px 25px rgba(108,99,255,0.1);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(108,99,255,0.1);
+      text-align: center;
+      animation: popIn 0.6s ease forwards;
+      transform: scale(0.9);
+      opacity: 0;
+    }
+
+    .feature-card:nth-child(1) { animation-delay: 0.2s; }
+    .feature-card:nth-child(2) { animation-delay: 0.3s; }
+    .feature-card:nth-child(3) { animation-delay: 0.4s; }
+
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(108,99,255,0.2);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .feature-card h3 {
+      color: #6c63ff;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .feature-card p {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .stats-section {
+      background: linear-gradient(135deg, #6c63ff, #48c6ef);
+      color: white;
+      border-radius: 20px;
+      padding: 50px 30px;
+      text-align: center;
+      margin: 40px 0;
+      animation: slideInUp 0.8s ease forwards;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .stat-item {
+      animation: countUp 2s ease forwards;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInText {
+      to { opacity: 1; }
+    }
+
+    @keyframes popIn {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes rotateConic {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .about-hero h1 {
+        font-size: 2rem;
+      }
+      .about-section {
+        padding: 25px;
+      }
+    }
+  </style>
 </head>
 <body data-theme="light">
-  <!-- Side decorations to fill empty spaces -->
+  <!-- Side decorations -->
   <div class="side-decoration left-decoration-1"></div>
   <div class="side-decoration left-decoration-2"></div>
   <div class="side-decoration left-decoration-3"></div>
   <div class="side-decoration right-decoration-1"></div>
   <div class="side-decoration right-decoration-2"></div>
   <div class="side-decoration right-decoration-3"></div>
-  
-  <!-- Animated dot patterns -->
   <div class="side-dots dots-left"></div>
   <div class="side-dots dots-right"></div>
-  
-  <!-- Elegant side lines -->
   <div class="side-line line-left"></div>
   <div class="side-line line-right"></div>
 
@@ -30,61 +240,97 @@
       <nav>
         <a href="index.html">Home</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="notes.html">Notes</a>
-        <a href="about.html">About</a>
-        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+        <a href="events.html">Events</a>
+        <a href="faq.html">FAQ</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-text">
-        <h2>About CampusConnect</h2>
-        <p>Built by students, for students. </p>
+    <div class="about-hero">
+      <h1>About CampusConnect 🎓</h1>
+      <p>Connecting students, enhancing campus life, one click at a time</p>
+    </div>
+
+    <div class="about-container">
+      <div class="about-section">
+        <h2>🌟 Our Mission</h2>
+        <p>CampusConnect was born from a simple idea: college life should be connected, not complicated. We believe that students deserve a seamless digital experience that brings together everything they need to thrive on campus.</p>
+        <p>Our mission is to bridge the gap between students and their campus community, making it easier than ever to discover opportunities, join clubs, attend events, and create lasting memories.</p>
       </div>
-    </section>
 
-    <section class="section">
-      <h2>What is CampusConnect?</h2>
-      <p><strong>CampusConnect</strong> is a centralized platform designed to simplify college life. From accessing notes and announcements to tracking events, documents, and memories — everything is available in one place.</p>
-      <p>In the chaos of classes, deadlines, club meetings, and campus fests, it's easy to feel overwhelmed. CampusConnect brings calm to that chaos by offering a one-stop solution that keeps everything neat, accessible, and beautifully organized. </p>
-      <p>No more jumping across 5 apps or digging through WhatsApp forwards — CampusConnect keeps it all in one clean, welcoming place.</p>
-    </section>
+      <div class="about-section">
+        <h2>🚀 What We Do</h2>
+        <p>We've created a comprehensive platform that serves as your digital campus companion. From event discovery to club memberships, from announcements to memory sharing – everything you need is right here.</p>
+        <p>Think of CampusConnect as your personal campus concierge, always ready to help you navigate your college journey with ease and confidence.</p>
+      </div>
 
-    <section class="section">
-      <h2>Our Purpose</h2>
-      <p>CampusConnect exists to help students stay organized, informed, and involved. We know how messy college schedules can get — that’s why we’re here to make it easier, smarter, and a little more fun! </p>
-      <p>It’s not just about tools — it’s about *experience*. We want students to *feel seen*, supported, and connected through this platform. From registering for events to rewatching memories from last semester, CampusConnect grows with you every step of the way.</p>
-      <p>It’s your planner, your gallery, your info hub — and most importantly, your comfort space in the digital campus.</p>
-    </section>
+      <div class="about-section">
+        <h2>💝 Why We Built This</h2>
+        <p>As students ourselves, we noticed how fragmented campus communication could be. Important announcements got lost in email chains, club information was scattered across different platforms, and amazing events often went unnoticed.</p>
+        <p>CampusConnect solves these problems by centralizing everything in one beautiful, easy-to-use platform that actually makes campus life better.</p>
+      </div>
 
-    <section class="section">
-      <h2>Made With Love</h2>
-      <p>This project was beautifully crafted by Rutvi Shah  — a passionate student who loves tech, design, and creating useful things that others can enjoy. </p>
-      <p>Every line of code, every icon, every section was built with one thought in mind — “How can I make a student’s life just a little bit easier and a lot more joyful?” </p>
-      <p>CampusConnect reflects the spirit of students — vibrant, evolving, and full of dreams. And Rutvii poured her heart into making sure every click here feels like home. </p>
-    </section>
+      <div class="stats-section">
+        <h2>Our Impact So Far</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Active Students</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Campus Clubs</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">Events Hosted</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">1000+</div>
+            <div class="stat-label">Memories Shared</div>
+          </div>
+        </div>
+      </div>
 
-    <section class="section">
-      <h2>Vision</h2>
-      <p>To become every student’s go-to portal — where everything they need, from academic resources to personal memories, lives in one beautiful, connected place.</p>
-      <p>We dream of campuses across the world using this kind of digital tool — a space where no student feels lost or disconnected.</p>
-      <p>Because college is more than assignments and lectures — it’s about friendships, chaos, achievements, late-night chai, laughter, heartbreak, and becoming who you’re meant to be. And CampusConnect hopes to be part of that journey — quietly supporting you in the background.</p>
-    </section>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Always Up-to-Date</h3>
+          <p>Real-time updates ensure you never miss important announcements or exciting events happening on campus.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Community First</h3>
+          <p>Built by students, for students. We understand what campus life is really like and what you actually need.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Simple & Fast</h3>
+          <p>No complicated interfaces or confusing navigation. Just clean, intuitive design that gets you where you need to go.</p>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 <strong>CampusConnect</strong> | About</p>
+    <p>&copy; 2025 <strong>CampusConnect</strong> | Made by Rutvi Shah</p>
   </footer>
 
   <script>
     function toggleTheme() {
       const body = document.body;
-      const currentTheme = body.getAttribute("data-theme");
-      body.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
+      const currentTheme = body.getAttribute('data-theme');
+      body.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+      
+      const btn = document.querySelector('.theme-toggle');
+      btn.style.transform = 'rotate(360deg) scale(1.2)';
+      setTimeout(() => {
+        btn.style.transform = '';
+        btn.textContent = currentTheme === 'light' ? '☀️' : '🌙';
+      }, 300);
     }
   </script>
-  <script src="main.js"></script>
 </body>
 </html>

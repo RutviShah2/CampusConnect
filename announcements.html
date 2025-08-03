@@ -6,27 +6,236 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Announcements | CampusConnect</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Universal box-sizing fix */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    /* Announcements Page Enhancements */
+    .announcements-hero {
+      text-align: center;
+      padding: 60px 30px 40px;
+      background: linear-gradient(135deg, rgba(108,99,255,0.05), rgba(72,198,239,0.05));
+      border-radius: 24px;
+      margin: 20px auto 40px;
+      max-width: 900px;
+      animation: fadeInUp 0.8s ease forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .announcements-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(72,198,239,0.03), transparent);
+      animation: rotateConic 25s linear infinite;
+      z-index: -1;
+    }
+
+    .announcements-hero h1 {
+      font-size: 2.5rem;
+      color: #6c63ff;
+      margin-bottom: 15px;
+      animation: slideDown 0.8s ease forwards;
+    }
+
+    .announcements-hero p {
+      font-size: 1.2rem;
+      color: #666;
+      margin: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+    }
+
+    .announcements-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .announcements-grid {
+      display: grid;
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .announcement-card {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 32px rgba(108,99,255,0.1);
+      border: 1px solid rgba(108,99,255,0.1);
+      transition: all 0.3s ease;
+      animation: slideInUp 0.8s ease forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .announcement-card:nth-child(1) { animation-delay: 0.1s; }
+    .announcement-card:nth-child(2) { animation-delay: 0.2s; }
+    .announcement-card:nth-child(3) { animation-delay: 0.3s; }
+    .announcement-card:nth-child(4) { animation-delay: 0.4s; }
+    .announcement-card:nth-child(5) { animation-delay: 0.5s; }
+    .announcement-card:nth-child(6) { animation-delay: 0.6s; }
+    .announcement-card:nth-child(7) { animation-delay: 0.7s; }
+    .announcement-card:nth-child(8) { animation-delay: 0.8s; }
+    .announcement-card:nth-child(9) { animation-delay: 0.9s; }
+    .announcement-card:nth-child(10) { animation-delay: 1.0s; }
+
+    .announcement-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(108,99,255,0.15);
+    }
+
+    .announcement-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(135deg, #6c63ff, #48c6ef);
+    }
+
+    .announcement-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 20px;
+    }
+
+    .announcement-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #6c63ff, #48c6ef);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+      animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .announcement-meta {
+      flex: 1;
+    }
+
+    .announcement-title {
+      color: #6c63ff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+    }
+
+    .announcement-department {
+      color: #666;
+      font-size: 1rem;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .announcement-content {
+      color: #555;
+      line-height: 1.7;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .announcement-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .tag {
+      background: rgba(108,99,255,0.1);
+      color: #6c63ff;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+      background: rgba(108,99,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes rotateConic {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .announcements-hero h1 {
+        font-size: 2rem;
+      }
+      .announcement-card {
+        padding: 25px 20px;
+      }
+      .announcement-header {
+        gap: 15px;
+      }
+      .announcement-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body data-theme="light">
-  <!-- Side decorations to fill empty spaces -->
+  <!-- Side decorations -->
   <div class="side-decoration left-decoration-1"></div>
   <div class="side-decoration left-decoration-2"></div>
   <div class="side-decoration left-decoration-3"></div>
   <div class="side-decoration right-decoration-1"></div>
   <div class="side-decoration right-decoration-2"></div>
   <div class="side-decoration right-decoration-3"></div>
-  
-  <!-- Animated dot patterns -->
   <div class="side-dots dots-left"></div>
   <div class="side-dots dots-right"></div>
-  
-  <!-- Elegant side lines -->
   <div class="side-line line-left"></div>
   <div class="side-line line-right"></div>
 
   <header>
     <div class="navbar">
-      <h1><strong>🎓 CampusConnect</strong></h1>
+      <h1><strong>CampusConnect</strong></h1>
       <nav>
         <a href="index.html">Home</a>
         <a href="dashboard.html">Dashboard</a>
@@ -38,35 +247,198 @@
   </header>
 
   <main>
-    <section class="section">
-      <h2>Announcements</h2>
-      <p>Stay updated with the latest announcements straight from your campus authorities, club coordinators, and event organizers. Be it academic schedules, festival prep, or surprise holidays — you’ll find it all here!</p>
+    <div class="announcements-hero">
+      <h1>Campus Announcements 📢</h1>
+      <p>Stay updated with the latest news and important information</p>
+    </div>
 
-      <h3>Academic Updates</h3>
-      <ul class="features">
-        <li>Mid-term exams will begin from <strong>September 10, 2025</strong>. Timetable will be released soon.</li>
-        <li>Assignment submissions for Semester 3 are due by <strong>August 25, 2025</strong>.</li>
-        <li>Attendance cutoff for eligibility: <strong>September 5, 2025</strong>.</li>
-      </ul><br>
+    <div class="announcements-container">
+      <div class="announcements-grid">
+        <div class="announcement-card">
+          <div class="announcement-header">
+            <div class="announcement-icon">📚</div>
+            <div class="announcement-meta">
+              <h3 class="announcement-title">Final Exams Schedule Released</h3>
+              <p class="announcement-department">Academic Affairs</p>
+            </div>
+          </div>
+          <div class="announcement-content">
+            The final examination schedule for the current semester has been released. Students are advised to check their exam dates and venues on the student portal. All exams will be conducted according to COVID-19 safety protocols. Please ensure you have your student ID and required materials ready for each exam.
+          </div>
+          <div class="announcement-tags">
+            <span class="tag">Exams</span>
+            <span class="tag">Academic</span>
+            <span class="tag">Important</span>
+          </div>
+        </div>
 
-      <h3>Campus Events</h3>
-      <ul class="features">
-        <li>Classes will remain suspended on <strong>August 15th</strong> due to Independence Day celebrations. Don’t forget to attend the flag hoisting ceremony at 8:00 AM! 🇮🇳</li>
-        <li>Cultural Fest pre-event orientation is scheduled for <strong>August 5, 2025</strong> in the Seminar Hall.</li>
-        <li>Registrations for Tech Expo stalls will close by <strong>October 5, 2025</strong>.</li>
-      </ul><br>
+        <div class="announcement-card">
+          <div class="announcement-header">
+            <div class="announcement-icon">🎭</div>
+            <div class="announcement-meta">
+              <h3 class="announcement-title">Cultural Fest Registration Open</h3>
+              <p class="announcement-department">Student Activities</p>
+            </div>
+          </div>
+          <div class="announcement-content">
+            Registration is now open for the annual cultural festival "Euphoria 2025". Students can participate in various competitions including dance, music, drama, and literary events. Early bird registration offers special benefits and priority selection for event slots.
+          </div>
+          <div class="announcement-tags">
+            <span class="tag">Cultural Fest</span>
+            <span class="tag">Registration</span>
+            <span class="tag">Competition</span>
+          </div>
+        </div>
 
-      <h3>Club & Community</h3>
-      <ul class="features">
-        <li>New club registrations are open till <strong>July 20, 2025</strong>. Don’t miss the chance to be part of amazing communities!</li>
-        <li>Photography Club's Orientation will be held on <strong>July 25, 2025</strong> in Room B206.</li>
-        <li>Music Club is hosting auditions for new members on <strong>August 2, 2025</strong>.</li>
-      </ul>
-    </section>
+        <div class="announcement-card">
+          <div class="announcement-header">
+            <div class="announcement-icon">🏥</div>
+            <div class="announcement-meta">
+              <h3 class="announcement-title">Health & Safety Guidelines Updated</h3>
+              <p class="announcement-department">Administration</p>
+            </div>
+          </div>
+          <div class="announcement-content">
+            Updated health and safety guidelines are now in effect campus-wide. All students and staff must follow the new protocols. Face masks are recommended in crowded areas and hand sanitizers are available at all entry points. Regular health check-ups are encouraged.
+          </div>
+          <div class="announcement-tags">
+            <span class="tag">Health</span>
+            <span class="tag">Safety</span>
+            <span class="tag">Guidelines</span>
+          </div>
+        </div>
+
+        <div class="announcement-card">
+          <div class="announcement-header">
+            <div class="announcement-icon">🍕</div>
+            <div class="announcement-meta">
+              <h3 class="announcement-title">New Cafeteria Menu Available</h3>
+              <p class="announcement-department">Cafeteria Services</p>
+            </div>
+          </div>
+          <div class="announcement-content">
+            We're excited to introduce our new semester menu with fresh options including healthy salads, regional cuisine, and student favorites. Special dietary requirements can be accommodated upon request. Extended hours during exam periods for your convenience.
+          </div>
+          <div class="announcement-tags">
+            <span class="tag">Cafeteria</span>
+            <span class="tag">Menu</span>
+            <span class="tag">Food</span>
+          </div>
+        </div>
+
+        <div class="announcement-card">
+          <div class="announcement-header">
+            <div class="announcement-icon">💼</div>
+            <div class="announcement-meta">
+              <h3 class="announcement-title">Career Fair 2025 - Industry Partners</h3>
+              <p class="announcement-department">Career Services</p>
+            </div>
+          </div>
+          <div class="announcement-content">
+            Join us for the biggest career fair of the year featuring 50+ top companies from various industries. Prepare your resumes and dress professionally. Mock interviews and resume review sessions are available. Networking opportunities with industry professionals.
+          </div>
+          <div class="announcement-tags">
+            <span class="tag">Career Fair</span>
+            <span class="tag">Jobs</span>
+            <span class="tag">Networking</span>
+          </div>
+        </div>
+
+        <div class="announcement-card">
+          <div class="announcement-header">
+            <div class="announcement-icon">📖</div>
+            <div class="announcement-meta">
+              <h3 class="announcement-title">Library Extended Hours During Exams</h3>
+              <p class="announcement-department">Library Services</p>
+            </div>
+          </div>
+          <div class="announcement-content">
+            The library will be open 24/7 during the examination period to provide students with quiet study spaces. Additional study rooms have been arranged with air conditioning and WiFi. Group study areas are also available with prior booking.
+          </div>
+          <div class="announcement-tags">
+            <span class="tag">Library</span>
+            <span class="tag">Study</span>
+            <span class="tag">Extended Hours</span>
+          </div>
+        </div>
+
+        <div class="announcement-card">
+          <div class="announcement-header">
+            <div class="announcement-icon">🚌</div>
+            <div class="announcement-meta">
+              <h3 class="announcement-title">Campus Shuttle Service Schedule</h3>
+              <p class="announcement-department">Transportation</p>
+            </div>
+          </div>
+          <div class="announcement-content">
+            New shuttle service connecting main campus to hostel areas and nearby metro stations. Service runs every 15 minutes during peak hours and every 30 minutes during off-peak hours. Free service for all students and staff with valid ID cards.
+          </div>
+          <div class="announcement-tags">
+            <span class="tag">Transportation</span>
+            <span class="tag">Shuttle</span>
+            <span class="tag">Campus</span>
+          </div>
+        </div>
+
+        <div class="announcement-card">
+          <div class="announcement-header">
+            <div class="announcement-icon">🏆</div>
+            <div class="announcement-meta">
+              <h3 class="announcement-title">Annual Sports Meet Registration</h3>
+              <p class="announcement-department">Sports Committee</p>
+            </div>
+          </div>
+          <div class="announcement-content">
+            Registration open for the Annual Inter-College Sports Meet 2025. Events include cricket, football, basketball, badminton, athletics, and more. Prizes worth ₹2 lakhs to be distributed among winners. Team and individual categories available.
+          </div>
+          <div class="announcement-tags">
+            <span class="tag">Sports</span>
+            <span class="tag">Competition</span>
+            <span class="tag">Registration</span>
+          </div>
+        </div>
+
+        <div class="announcement-card">
+          <div class="announcement-header">
+            <div class="announcement-icon">💻</div>
+            <div class="announcement-meta">
+              <h3 class="announcement-title">Free Coding Bootcamp - AI & Machine Learning</h3>
+              <p class="announcement-department">Computer Science Department</p>
+            </div>
+          </div>
+          <div class="announcement-content">
+            A 30-day intensive bootcamp on AI and Machine Learning fundamentals. Industry experts will conduct sessions covering Python, TensorFlow, and real-world projects. Limited seats available. Certificate upon successful completion.
+          </div>
+          <div class="announcement-tags">
+            <span class="tag">Bootcamp</span>
+            <span class="tag">AI/ML</span>
+            <span class="tag">Free</span>
+          </div>
+        </div>
+
+        <div class="announcement-card">
+          <div class="announcement-header">
+            <div class="announcement-icon">🌱</div>
+            <div class="announcement-meta">
+              <h3 class="announcement-title">Green Campus Initiative Launch</h3>
+              <p class="announcement-department">Environmental Committee</p>
+            </div>
+          </div>
+          <div class="announcement-content">
+            Join our mission to make campus carbon neutral by 2030. Tree plantation drive, waste reduction programs, and renewable energy initiatives. Students can earn community service credits by participating in various environmental activities.
+          </div>
+          <div class="announcement-tags">
+            <span class="tag">Environment</span>
+            <span class="tag">Green Initiative</span>
+            <span class="tag">Sustainability</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 <strong>CampusConnect</strong> | Announcements</p>
+    <p>&copy; 2025 <strong>CampusConnect</strong> | Made by Rutvi Shah</p>
   </footer>
 
   <script>
@@ -74,8 +446,14 @@
       const body = document.body;
       const currentTheme = body.getAttribute('data-theme');
       body.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+      
+      const btn = document.querySelector('.theme-toggle');
+      btn.style.transform = 'rotate(360deg) scale(1.2)';
+      setTimeout(() => {
+        btn.style.transform = '';
+        btn.textContent = currentTheme === 'light' ? '☀️' : '🌙';
+      }, 300);
     }
   </script>
-  <script src="main.js"></script>
 </body>
 </html>

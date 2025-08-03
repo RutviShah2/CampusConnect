@@ -2,68 +2,466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clubs | CampusConnect</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Universal box-sizing fix */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    /* Clubs Page Enhancements */
+    .clubs-hero {
+      text-align: center;
+      padding: 60px 30px 40px;
+      background: linear-gradient(135deg, rgba(108,99,255,0.05), rgba(72,198,239,0.05));
+      border-radius: 24px;
+      margin: 20px auto 40px;
+      max-width: 900px;
+      animation: fadeInUp 0.8s ease forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .clubs-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(108,99,255,0.03), transparent);
+      animation: rotateConic 15s linear infinite;
+      z-index: -1;
+    }
+
+    .clubs-hero h1 {
+      font-size: 2.5rem;
+      color: #6c63ff;
+      margin-bottom: 15px;
+      animation: slideDown 0.8s ease forwards;
+    }
+
+    .clubs-hero p {
+      font-size: 1.2rem;
+      color: #666;
+      margin: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+    }
+
+    .clubs-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .clubs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .club-card {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 0;
+      box-shadow: 0 8px 32px rgba(108,99,255,0.1);
+      border: 1px solid rgba(108,99,255,0.1);
+      transition: all 0.3s ease;
+      animation: slideInUp 0.8s ease forwards;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .club-card:nth-child(1) { animation-delay: 0.1s; }
+    .club-card:nth-child(2) { animation-delay: 0.2s; }
+    .club-card:nth-child(3) { animation-delay: 0.3s; }
+    .club-card:nth-child(4) { animation-delay: 0.4s; }
+    .club-card:nth-child(5) { animation-delay: 0.5s; }
+    .club-card:nth-child(6) { animation-delay: 0.6s; }
+
+    .club-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(108,99,255,0.2);
+    }
+
+    .club-header {
+      background: linear-gradient(135deg, #6c63ff, #48c6ef);
+      color: white;
+      padding: 30px 25px;
+      text-align: center;
+      position: relative;
+    }
+
+    .club-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .club-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+    }
+
+    .club-category {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    .club-content {
+      padding: 30px 25px 25px;
+    }
+
+    .club-description {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      font-size: 1rem;
+    }
+
+    .club-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
+      padding: 20px 15px;
+      background: rgba(108,99,255,0.05);
+      border-radius: 12px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      color: #6c63ff;
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 0.85rem;
+    }
+
+    .club-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .club-tag {
+      background: rgba(108,99,255,0.1);
+      color: #6c63ff;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .club-tag:hover {
+      background: rgba(108,99,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255,255,255,0.95);
+      color: #6c63ff;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(108,99,255,0.2);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes rotateConic {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .clubs-hero h1 {
+        font-size: 2rem;
+      }
+      .clubs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body data-theme="light">
-  <!-- Side decorations to fill empty spaces -->
+  <!-- Side decorations -->
   <div class="side-decoration left-decoration-1"></div>
   <div class="side-decoration left-decoration-2"></div>
   <div class="side-decoration left-decoration-3"></div>
   <div class="side-decoration right-decoration-1"></div>
   <div class="side-decoration right-decoration-2"></div>
   <div class="side-decoration right-decoration-3"></div>
-  
-  <!-- Animated dot patterns -->
   <div class="side-dots dots-left"></div>
   <div class="side-dots dots-right"></div>
-  
-  <!-- Elegant side lines -->
   <div class="side-line line-left"></div>
   <div class="side-line line-right"></div>
 
   <header>
     <div class="navbar">
-      <h1><strong>🎓 CampusConnect</strong></h1>
+      <h1><strong>CampusConnect</strong></h1>
       <nav>
         <a href="index.html">Home</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="events.html">Events</a>
+        <a href="faq.html">FAQ</a>
         <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="section">
-      <h2>Student Clubs</h2>
-      <p>Clubs are the heartbeat of campus life! Whether you're a coder, artist, speaker, or just looking for a community — there’s a place here waiting for you.   
-      Explore your interests, meet passionate people, and create unforgettable college moments.</p>
-      
-      <ul class="features">
-        <li><strong>Music Club:</strong> A haven for vocalists, instrumentalists, and music lovers. From jamming sessions to on-stage performances — this is where melodies come alive. </li>
-        
-        <li><strong>Coding Club:</strong> Join workshops, participate in hackathons, and build cool projects with fellow tech geeks. Whether you're a beginner or a pro, you'll fit right in!</li>
-        
-        <li><strong>Literary Club:</strong> Words matter here. Engage in debates, writing competitions, poetry nights, and book discussions that inspire deep thought and creativity.</li>
-        
-        <li><strong>Drama Club:</strong> Express your inner artist through acting, direction, stagecraft, and theatre magic. Lights, camera, action!</li>
-        
-        <li><strong>Photography Club:</strong> Capture campus life one frame at a time. Join photo walks, edit workshops, and showcase your best clicks in exhibitions.</li>
-        
-        <li><strong>Art & Design Club:</strong> From sketching and painting to digital design — this club brings imagination to life. Expect collabs, mural-making, and design challenges.</li>
-        
-        <li><strong>Strategy Club:</strong> For chess champs, sudoku solvers, and logic puzzle lovers. Sharpen your mind while having fun.</li>
-      </ul>
+    <div class="clubs-hero">
+      <h1>Campus Clubs & Societies 🎭</h1>
+      <p>Discover your passion, meet like-minded friends, and build amazing memories</p>
+    </div>
 
-      <p style="margin-top: 1.5rem;">Want to start a new club or join an existing one? Head over to the <a href="register.html"><strong>Registration Page</strong></a> and become a part of something amazing today!</p>
-    </section>
+    <div class="clubs-container">
+      <div class="clubs-grid">
+        <div class="club-card">
+          <div class="featured-badge">⭐ Featured</div>
+          <div class="club-header">
+            <div class="club-icon">💻</div>
+            <h3 class="club-name">Code Warriors</h3>
+            <p class="club-category">Technical Club</p>
+          </div>
+          <div class="club-content">
+            <p class="club-description">
+              Join the ultimate coding community where students collaborate on projects, participate in hackathons, and enhance their programming skills through workshops and competitions.
+            </p>
+            <div class="club-stats">
+              <div class="stat-item">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Members</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">25</div>
+                <div class="stat-label">Projects</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Events</div>
+              </div>
+            </div>
+            <div class="club-tags">
+              <span class="club-tag">Programming</span>
+              <span class="club-tag">Hackathons</span>
+              <span class="club-tag">AI/ML</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="club-card">
+          <div class="club-header">
+            <div class="club-icon">🎭</div>
+            <h3 class="club-name">Drama Society</h3>
+            <p class="club-category">Cultural Club</p>
+          </div>
+          <div class="club-content">
+            <p class="club-description">
+              Express yourself through the art of theater! Our drama society organizes plays, skits, and theatrical performances throughout the year, providing a platform for budding actors and directors.
+            </p>
+            <div class="club-stats">
+              <div class="stat-item">
+                <div class="stat-number">85</div>
+                <div class="stat-label">Members</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Plays</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">20</div>
+                <div class="stat-label">Events</div>
+              </div>
+            </div>
+            <div class="club-tags">
+              <span class="club-tag">Theater</span>
+              <span class="club-tag">Acting</span>
+              <span class="club-tag">Creative</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="club-card">
+          <div class="club-header">
+            <div class="club-icon">🏃‍♂️</div>
+            <h3 class="club-name">Athletic Club</h3>
+            <p class="club-category">Sports Club</p>
+          </div>
+          <div class="club-content">
+            <p class="club-description">
+              Stay fit and competitive! Our athletic club organizes various sports events, tournaments, and fitness activities. Perfect for sports enthusiasts and those looking to maintain an active lifestyle.
+            </p>
+            <div class="club-stats">
+              <div class="stat-item">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Members</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Sports</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">30</div>
+                <div class="stat-label">Tournaments</div>
+              </div>
+            </div>
+            <div class="club-tags">
+              <span class="club-tag">Sports</span>
+              <span class="club-tag">Fitness</span>
+              <span class="club-tag">Competition</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="club-card">
+          <div class="featured-badge">🔥 Popular</div>
+          <div class="club-header">
+            <div class="club-icon">🎵</div>
+            <h3 class="club-name">Music Society</h3>
+            <p class="club-category">Cultural Club</p>
+          </div>
+          <div class="club-content">
+            <p class="club-description">
+              For music lovers and creators! Join our vibrant music community to participate in concerts, jam sessions, and music competitions. All skill levels and genres welcome.
+            </p>
+            <div class="club-stats">
+              <div class="stat-item">
+                <div class="stat-number">120</div>
+                <div class="stat-label">Members</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">18</div>
+                <div class="stat-label">Concerts</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">30</div>
+                <div class="stat-label">Events</div>
+              </div>
+            </div>
+            <div class="club-tags">
+              <span class="club-tag">Music</span>
+              <span class="club-tag">Concerts</span>
+              <span class="club-tag">Performance</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="club-card">
+          <div class="club-header">
+            <div class="club-icon">📚</div>
+            <h3 class="club-name">Literary Society</h3>
+            <p class="club-category">Academic Club</p>
+          </div>
+          <div class="club-content">
+            <p class="club-description">
+              Dive into the world of words! Our literary society organizes book discussions, poetry readings, writing workshops, and literary competitions for all book lovers and aspiring writers.
+            </p>
+            <div class="club-stats">
+              <div class="stat-item">
+                <div class="stat-number">75</div>
+                <div class="stat-label">Members</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Workshops</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Events</div>
+              </div>
+            </div>
+            <div class="club-tags">
+              <span class="club-tag">Literature</span>
+              <span class="club-tag">Writing</span>
+              <span class="club-tag">Poetry</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="club-card">
+          <div class="club-header">
+            <div class="club-icon">🌱</div>
+            <h3 class="club-name">Environmental Club</h3>
+            <p class="club-category">Social Club</p>
+          </div>
+          <div class="club-content">
+            <p class="club-description">
+              Make a difference for our planet! Join our environmental initiatives including tree plantation drives, clean-up campaigns, and sustainability awareness programs on campus.
+            </p>
+            <div class="club-stats">
+              <div class="stat-item">
+                <div class="stat-number">95</div>
+                <div class="stat-label">Members</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Trees Planted</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">25</div>
+                <div class="stat-label">Campaigns</div>
+              </div>
+            </div>
+            <div class="club-tags">
+              <span class="club-tag">Environment</span>
+              <span class="club-tag">Sustainability</span>
+              <span class="club-tag">Social Impact</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 <strong>CampusConnect</strong> | Clubs</p>
+    <p>&copy; 2025 <strong>CampusConnect</strong> | Made by Rutvi Shah</p>
   </footer>
 
   <script>
@@ -71,8 +469,14 @@
       const body = document.body;
       const currentTheme = body.getAttribute('data-theme');
       body.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+      
+      const btn = document.querySelector('.theme-toggle');
+      btn.style.transform = 'rotate(360deg) scale(1.2)';
+      setTimeout(() => {
+        btn.style.transform = '';
+        btn.textContent = currentTheme === 'light' ? '☀️' : '🌙';
+      }, 300);
     }
   </script>
-  <script src="main.js"></script>
 </body>
 </html>
