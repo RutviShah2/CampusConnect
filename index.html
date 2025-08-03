@@ -8,6 +8,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body data-theme="light">
+  <!-- Side decorations to fill empty spaces -->
+  <div class="side-decoration left-decoration-1"></div>
+  <div class="side-decoration left-decoration-2"></div>
+  <div class="side-decoration left-decoration-3"></div>
+  <div class="side-decoration right-decoration-1"></div>
+  <div class="side-decoration right-decoration-2"></div>
+  <div class="side-decoration right-decoration-3"></div>
+  
+  <!-- Animated dot patterns -->
+  <div class="side-dots dots-left"></div>
+  <div class="side-dots dots-right"></div>
+  
+  <!-- Elegant side lines -->
+  <div class="side-line line-left"></div>
+  <div class="side-line line-right"></div>
+
   <header>
     <div class="navbar">
       <h1><strong> CampusConnect</strong></h1>
@@ -93,7 +109,25 @@
       const body = document.body;
       const currentTheme = body.getAttribute('data-theme');
       body.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+      
+      // Enhanced theme button animation
+      const btn = document.querySelector('.theme-toggle');
+      btn.style.transform = 'rotate(360deg) scale(1.2)';
+      setTimeout(() => {
+        btn.style.transform = '';
+        btn.textContent = currentTheme === 'light' ? '☀️' : '🌙';
+      }, 300);
     }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
   </script>
 
   <script src="main.js"></script>
