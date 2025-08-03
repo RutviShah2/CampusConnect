@@ -3,100 +3,629 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CampusConnect | Home</title>
+  <title>CampusConnect - Your Digital Campus Hub</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* Universal box-sizing fix */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    /* Enhanced Hero Section - NO BACKGROUND */
+    .hero {
+      color: #333;
+      text-align: center;
+      padding: 120px 30px 100px;
+      margin: 20px auto 60px;
+      border-radius: 40px;
+      max-width: 1200px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 25px;
+      animation: slideInDown 1.2s ease forwards;
+      letter-spacing: -2px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 35px;
+      font-weight: 400;
+      animation: slideInUp 1.2s ease 0.3s both;
+      line-height: 1.6;
+      color: #666;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 18px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      animation: slideInUp 1.2s ease 0.6s both;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+    }
+
+    .hero-cta::after {
+      content: '→';
+      transition: transform 0.3s ease;
+    }
+
+    .hero-cta:hover::after {
+      transform: translateX(5px);
+    }
+
+    /* Features Section */
+    .features-section {
+      max-width: 1300px;
+      margin: 0 auto 80px;
+      padding: 0 30px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .section-header h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .section-header p {
+      font-size: 1.3rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 50px 40px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(102, 126, 234, 0.1);
+      border: 1px solid rgba(102, 126, 234, 0.1);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      animation: slideInUp 0.8s ease forwards;
+    }
+
+    .feature-card:nth-child(1) { animation-delay: 0.1s; }
+    .feature-card:nth-child(2) { animation-delay: 0.2s; }
+    .feature-card:nth-child(3) { animation-delay: 0.3s; }
+    .feature-card:nth-child(4) { animation-delay: 0.4s; }
+    .feature-card:nth-child(5) { animation-delay: 0.5s; }
+    .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(135deg, #667eea, #764ba2, #48c6ef);
+      border-radius: 30px 30px 0 0;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 30px 80px rgba(102, 126, 234, 0.25);
+    }
+
+    .feature-icon {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      margin: 0 auto 30px;
+      position: relative;
+      animation: float 4s ease-in-out infinite;
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+    }
+
+    .feature-card:nth-child(2) .feature-icon { animation-delay: 1s; }
+    .feature-card:nth-child(3) .feature-icon { animation-delay: 2s; }
+    .feature-card:nth-child(4) .feature-icon { animation-delay: 3s; }
+    .feature-card:nth-child(5) .feature-icon { animation-delay: 4s; }
+    .feature-card:nth-child(6) .feature-icon { animation-delay: 5s; }
+
+    .feature-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .feature-description {
+      color: #666;
+      line-height: 1.7;
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(72, 198, 239, 0.05));
+      border-radius: 40px;
+      padding: 80px 40px;
+      margin: 0 auto 80px;
+      max-width: 1200px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(102, 126, 234, 0.03), transparent);
+      animation: rotateConic 30s linear infinite;
+      z-index: 1;
+    }
+
+    .stats-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat-item {
+      animation: slideInUp 0.8s ease forwards;
+    }
+
+    .stat-item:nth-child(1) { animation-delay: 0.1s; }
+    .stat-item:nth-child(2) { animation-delay: 0.3s; }
+    .stat-item:nth-child(3) { animation-delay: 0.5s; }
+    .stat-item:nth-child(4) { animation-delay: 0.7s; }
+
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      color: #666;
+      font-weight: 600;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* CTA Section - NO BACKGROUND */
+    .cta-section {
+      color: #333;
+      text-align: center;
+      padding: 100px 40px;
+      border-radius: 40px;
+      margin: 0 auto 60px;
+      max-width: 1000px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-section h2 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin-bottom: 25px;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-section p {
+      font-size: 1.4rem;
+      margin-bottom: 40px;
+      line-height: 1.6;
+      color: #666;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      padding: 18px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn.primary {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .cta-btn.primary:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    .cta-btn.secondary {
+      background: transparent;
+      color: #667eea;
+      border: 2px solid #667eea;
+    }
+
+    .cta-btn.secondary:hover {
+      background: #667eea;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Floating Elements */
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(72, 198, 239, 0.1));
+      animation: floatUpDown 6s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    .floating-element:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-element:nth-child(2) {
+      width: 120px;
+      height: 120px;
+      top: 20%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+
+    .floating-element:nth-child(3) {
+      width: 60px;
+      height: 60px;
+      bottom: 20%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    .floating-element:nth-child(4) {
+      width: 100px;
+      height: 100px;
+      bottom: 10%;
+      right: 10%;
+      animation-delay: 1s;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes floatUpDown {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes rotateConic {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes floatPattern {
+      0% { transform: translateX(0px); }
+      100% { transform: translateX(20px); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+      
+      .hero h1 {
+        font-size: 3rem;
+      }
+      
+      .section-header h2 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 80px 20px 60px;
+        border-radius: 25px;
+        margin: 10px 20px 40px;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      
+      .feature-card {
+        padding: 40px 25px;
+        border-radius: 20px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .section-header h2 {
+        font-size: 2rem;
+      }
+      
+      .cta-section h2 {
+        font-size: 2.5rem;
+      }
+      
+      .cta-section {
+        padding: 60px 25px;
+        border-radius: 25px;
+        margin: 0 20px 40px;
+      }
+      
+      .stats-section {
+        padding: 50px 25px;
+        border-radius: 25px;
+        margin: 0 20px 50px;
+      }
+    }
+  </style>
 </head>
 <body data-theme="light">
-  <!-- Side decorations to fill empty spaces -->
+  <!-- Floating Elements -->
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+  <div class="floating-element"></div>
+
+  <!-- Side decorations -->
   <div class="side-decoration left-decoration-1"></div>
   <div class="side-decoration left-decoration-2"></div>
   <div class="side-decoration left-decoration-3"></div>
   <div class="side-decoration right-decoration-1"></div>
   <div class="side-decoration right-decoration-2"></div>
   <div class="side-decoration right-decoration-3"></div>
-  
-  <!-- Animated dot patterns -->
   <div class="side-dots dots-left"></div>
   <div class="side-dots dots-right"></div>
-  
-  <!-- Elegant side lines -->
   <div class="side-line line-left"></div>
   <div class="side-line line-right"></div>
 
   <header>
     <div class="navbar">
-      <h1><strong> CampusConnect</strong></h1>
+      <h1><strong>CampusConnect</strong></h1>
       <nav>
-        <a href="#about">About</a>
-        <a href="#features">Features</a>  
-        <a href="#contact">Contact</a>
-        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="events.html">Events</a>
+        <a href="faq.html">FAQ</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- Enhanced Hero Section -->
     <section class="hero">
-      <div class="hero-text">
-        <h2>Your College, One Portal</h2>
-        <p>
-  <strong>CampusConnect</strong> brings your entire college life together in one place. From events and clubs to announcements and campus memories—everything is just a click away.<br> </p>  
-  <p>Whether you're looking to register for a workshop, explore vibrant student communities, or revisit unforgettable campus moments, CampusConnect is your go-to digital companion.</p>
-  <p>Stay informed, stay connected, and make every semester count — because your college experience deserves to be celebrated every single day. </p>
-
-        <a href="#modules" class="cta-button">Explore Now</a>
+      <div class="hero-content">
+        <h1>Welcome to CampusConnect</h1>
+        <p class="hero-subtitle">Your ultimate digital hub for campus life, events, and connections. Discover, engage, and make memories that last a lifetime.</p>
+        <a href="dashboard.html" class="hero-cta">
+          Explore Dashboard
+        </a>
       </div>
     </section>
 
-    <section id="about" class="section">
-      <h2>About CampusConnect</h2>
-      <p><strong>CampusConnect</strong> is your digital companion for college life — designed with students in mind. Stay informed, get involved, and celebrate your journey, all in one place!</p>
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="section-header">
+        <h2>Everything You Need</h2>
+        <p>Discover all the amazing features that make campus life easier, more connected, and absolutely unforgettable.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3 class="feature-title">Smart Dashboard</h3>
+          <p class="feature-description">Get a personalized overview of your campus activities, upcoming events, academic progress, and important announcements all in one place.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🎉</div>
+          <h3 class="feature-title">Event Discovery</h3>
+          <p class="feature-description">Never miss out on exciting campus events, workshops, competitions, and social gatherings. Stay updated with real-time event notifications.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📸</div>
+          <h3 class="feature-title">Memory Gallery</h3>
+          <p class="feature-description">Capture and relive your favorite campus moments with our beautiful photo gallery. Share memories and connect with your college community.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3 class="feature-title">Community Hub</h3>
+          <p class="feature-description">Connect with fellow students, join clubs, participate in discussions, and build lasting friendships that extend beyond graduation.</p>
+        </div>
 
-<p>Whether you're a fresher trying to find your way or a senior juggling responsibilities, this platform ensures you never miss a beat. From daily schedules to major campus festivals, everything you need lives right here.</p>
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3 class="feature-title">Academic Resources</h3>
+          <p class="feature-description">Access study materials, assignment deadlines, grade tracking, and academic support services. Stay on top of your educational journey with ease.</p>
+        </div>
 
-<p>Feeling curious about what’s happening today? Want to relive last month’s fest through the gallery? Need to register for a club or check for any upcoming competitions? CampusConnect makes it all effortless, so you can focus more on enjoying college life and less on managing it.</p>
-
-<p>Whether you're planning, participating, or simply exploring — this platform becomes your home base. It supports you when you're confused, cheers for you when you're thriving, and helps you stay connected to every little corner of your campus.</p>
-
-<p>Because let’s be honest — college isn’t just about classes. It’s about friendships, memories, growth, and having fun while chasing your dreams. CampusConnect is here to help you make the most of every moment.</p>
-     
-    </section>
-
-    <section id="features" class="section">
-      <h2> Why You'll Love It</h2>
-      <ul class="features">
-        <li>All upcoming college events in one place — never miss an opportunity to participate or shine!</li>
-        <li>Instant access to important announcements — be the first to know what's happening on campus.</li>
-        <li>Explore student clubs and communities — connect with like-minded people and grow your skills.</li>
-        <li>A gallery of unforgettable campus memories — relive the magic of college through shared snapshots.</li>
-        <li>Helpful FAQs and guidance — perfect for solving doubts and getting tips on navigating college life.</li>
-        <li>Easy registration for events/clubs — join activities and make the most of every semester.</li>
-        <li>Contact support anytime — we’re always here to help with queries, ideas, or even tech glitches.</li>
-        <li>Light/Dark theme toggle for comfort — because your eyes deserve the best, day or night!</li>
-      </ul>
-    </section>
-
-    <section id="modules" class="section">
-      <h2>Explore Modules</h2>
-      <p>Navigate through all the key areas of your campus journey </p>
-      <div class="modules">
-        <a href="about.html">About</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="eventPlanner.html">Events </a>
-        <a href="announcements.html">Announcements</a>
-        <a href="clubs.html">Clubs </a>
-        <a href="memories.html">Memories </a>
-        <a href="faq.html">FAQ </a>
-        <a href="contact.html">Contact </a>
-        <a href="register.html">Register </a>
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3 class="feature-title">Achievement Tracker</h3>
+          <p class="feature-description">Track your accomplishments, certificates, awards, and milestones. Celebrate your successes and build an impressive academic portfolio.</p>
+        </div>
       </div>
     </section>
 
-    <section id="contact" class="section">
-      <h2>Contact Us</h2>
-      <p>Got feedback or questions? Reach out at <strong>support@campusconnect.in</strong>. We’re here to listen and grow with you!</p>
-      <p>Our student support team is just a ping away—whether it’s a technical hiccup, an idea for a new feature, or something as simple as sharing love for CampusConnect. Don't hesitate, we love hearing from you!</p>
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="stats-content">
+        <div class="section-header">
+          <h2>Join Our Growing Community</h2>
+          <p>Be part of a vibrant campus ecosystem that's transforming student life every day.</p>
+        </div>
+        
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number" data-target="5000">0</div>
+            <div class="stat-label">Active Students</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="250">0</div>
+            <div class="stat-label">Campus Events</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="50">0</div>
+            <div class="stat-label">Student Clubs</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="10000">0</div>
+            <div class="stat-label">Memories Shared</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>Ready to Get Connected?</h2>
+        <p>Join thousands of students who are already making the most of their campus experience with CampusConnect.</p>
+        <div class="cta-buttons">
+          <a href="dashboard.html" class="cta-btn primary">
+            <span>Get Started</span>
+            <span>🚀</span>
+          </a>
+          <a href="eventPlanner.html" class="cta-btn secondary">
+            <span>Explore Events</span>
+            <span>🎊</span>
+          </a>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -110,7 +639,6 @@
       const currentTheme = body.getAttribute('data-theme');
       body.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
       
-      // Enhanced theme button animation
       const btn = document.querySelector('.theme-toggle');
       btn.style.transform = 'rotate(360deg) scale(1.2)';
       setTimeout(() => {
@@ -119,17 +647,50 @@
       }, 300);
     }
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
+    // Animated Number Counter
+    function animateNumbers() {
+      const stats = document.querySelectorAll('.stat-number');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = parseInt(entry.target.getAttribute('data-target'));
+            const increment = target / 100;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= target) {
+                entry.target.textContent = target.toLocaleString() + '+';
+                clearInterval(timer);
+              } else {
+                entry.target.textContent = Math.floor(current).toLocaleString();
+              }
+            }, 20);
+            
+            observer.unobserve(entry.target);
+          }
         });
       });
+      
+      stats.forEach(stat => observer.observe(stat));
+    }
+
+    // Initialize animations when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      animateNumbers();
+    });
+
+    // Add scroll reveal effect
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallax = document.querySelector('.hero');
+      const speed = scrolled * 0.5;
+      
+      if (parallax) {
+        parallax.style.transform = `translateY(${speed}px)`;
+      }
     });
   </script>
-
-  <script src="main.js"></script>
 </body>
 </html>
