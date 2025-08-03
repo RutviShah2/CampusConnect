@@ -463,18 +463,37 @@
   </div>
 
   <script>
+    // Persistent Theme System
+    function initializeTheme() {
+      const savedTheme = localStorage.getItem('campusconnect-theme') || 'light';
+      document.body.setAttribute('data-theme', savedTheme);
+      
+      const themeBtn = document.querySelector('.theme-toggle');
+      if (themeBtn) {
+        themeBtn.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+      }
+    }
+
     function toggleTheme() {
       const body = document.body;
-      const currentTheme = body.getAttribute("data-theme");
-      body.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('campusconnect-theme', newTheme);
       
       const btn = document.querySelector('.theme-toggle');
-      btn.style.transform = 'rotate(360deg) scale(1.2)';
-      setTimeout(() => {
-        btn.style.transform = '';
-        btn.textContent = currentTheme === 'light' ? '☀️' : '🌙';
-      }, 300);
+      if (btn) {
+        btn.style.transform = 'rotate(360deg) scale(1.2)';
+        setTimeout(() => {
+          btn.style.transform = '';
+          btn.textContent = newTheme === 'light' ? '🌙' : '☀️';
+        }, 300);
+      }
     }
+
+    // Initialize theme immediately
+    initializeTheme();
 
     // Clean Slider Logic - NO CAPTIONS
     const sliderContainer = document.getElementById('sliderContainer');
@@ -573,6 +592,8 @@
         closePopup();
       }
     });
+
+    document.addEventListener('DOMContentLoaded', initializeTheme);
   </script>
 </body>
 </html>

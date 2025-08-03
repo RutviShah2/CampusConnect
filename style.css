@@ -1,3 +1,77 @@
+/* Universal Theme Variables */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --card-bg: rgba(255,255,255,0.95);
+  --border-color: rgba(102, 126, 234, 0.1);
+  --shadow-color: rgba(102, 126, 234, 0.1);
+  --secondary-text: #666666;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --card-bg: rgba(45, 45, 45, 0.95);
+  --border-color: rgba(102, 126, 234, 0.3);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --secondary-text: #cccccc;
+}
+
+/* Universal Theme Application */
+body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  transition: all 0.3s ease;
+}
+
+/* Universal card styling for all components */
+.dashboard-card, .feature-card, .event-card, .club-card, 
+.contact-info, .contact-form, .faq-item, .stat-card,
+.register-form, .announcement-card, .about-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 8px 32px var(--shadow-color) !important;
+}
+
+/* Dark theme text colors */
+[data-theme="dark"] .hero-subtitle,
+[data-theme="dark"] .section-header p,
+[data-theme="dark"] .feature-description,
+[data-theme="dark"] .event-description,
+[data-theme="dark"] .club-description,
+[data-theme="dark"] .stat-label,
+[data-theme="dark"] .contact-details p,
+[data-theme="dark"] .faq-answer p,
+[data-theme="dark"] .register-hero p,
+[data-theme="dark"] .announcement-text,
+[data-theme="dark"] .about-text {
+  color: var(--secondary-text) !important;
+}
+
+/* Dark theme navbar and footer */
+[data-theme="dark"] .navbar {
+  background: rgba(45, 45, 45, 0.95) !important;
+  backdrop-filter: blur(20px);
+}
+
+[data-theme="dark"] footer {
+  background: rgba(45, 45, 45, 0.95) !important;
+}
+
+/* Dark theme form elements */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background: rgba(60, 60, 60, 0.8) !important;
+  color: white !important;
+  border-color: rgba(102, 126, 234, 0.3) !important;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #aaa !important;
+}
+
 :root {
   --light-bg: #F7FAFC;
   --light-card: #e3f2fd;

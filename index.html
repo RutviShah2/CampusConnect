@@ -516,7 +516,7 @@
       <nav>
         <a href="index.html">Home</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="events.html">Events</a>
+        <a href="eventPlanner.html">Events</a>
         <a href="faq.html">FAQ</a>
         <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
       </nav>
@@ -634,18 +634,37 @@
   </footer>
 
   <script>
+    // Persistent Theme System
+    function initializeTheme() {
+      const savedTheme = localStorage.getItem('campusconnect-theme') || 'light';
+      document.body.setAttribute('data-theme', savedTheme);
+      
+      const themeBtn = document.querySelector('.theme-toggle');
+      if (themeBtn) {
+        themeBtn.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+      }
+    }
+
     function toggleTheme() {
       const body = document.body;
       const currentTheme = body.getAttribute('data-theme');
-      body.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('campusconnect-theme', newTheme);
       
       const btn = document.querySelector('.theme-toggle');
-      btn.style.transform = 'rotate(360deg) scale(1.2)';
-      setTimeout(() => {
-        btn.style.transform = '';
-        btn.textContent = currentTheme === 'light' ? '☀️' : '🌙';
-      }, 300);
+      if (btn) {
+        btn.style.transform = 'rotate(360deg) scale(1.2)';
+        setTimeout(() => {
+          btn.style.transform = '';
+          btn.textContent = newTheme === 'light' ? '🌙' : '☀️';
+        }, 300);
+      }
     }
+
+    // Initialize theme immediately
+    initializeTheme();
 
     // Animated Number Counter
     function animateNumbers() {
@@ -678,6 +697,7 @@
 
     // Initialize animations when page loads
     document.addEventListener('DOMContentLoaded', () => {
+      initializeTheme();
       animateNumbers();
     });
 
