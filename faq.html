@@ -401,29 +401,32 @@
     // Initialize theme immediately
     initializeTheme();
 
-    // FAQ Toggle functionality
+    // Updated FAQ Toggle functionality to work with CSS animations
     function toggleFAQ(element) {
-      const answer = element.nextElementSibling;
-      const icon = element.querySelector('.faq-icon');
+      const faqItem = element.parentElement;
+      const isActive = faqItem.classList.contains('active');
       
-      if (answer.style.display === 'block') {
-        answer.style.display = 'none';
-        icon.textContent = '+';
-        element.classList.remove('active');
-      } else {
-        // Close all other FAQs
-        document.querySelectorAll('.faq-answer').forEach(ans => ans.style.display = 'none');
-        document.querySelectorAll('.faq-icon').forEach(ico => ico.textContent = '+');
-        document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
-        
-        // Open clicked FAQ
-        answer.style.display = 'block';
-        icon.textContent = '−';
-        element.classList.add('active');
+      // Close all other FAQs
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Toggle current FAQ
+      if (!isActive) {
+        faqItem.classList.add('active');
       }
     }
 
-    document.addEventListener('DOMContentLoaded', initializeTheme);
+    // Add click event listeners to all FAQ questions
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeTheme();
+      
+      // Add click handlers to FAQ questions
+      document.querySelectorAll('.faq-question').forEach(question => {
+        question.style.cursor = 'pointer';
+        question.addEventListener('click', () => toggleFAQ(question));
+      });
+    });
   </script>
 </body>
 </html>
