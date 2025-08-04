@@ -6,26 +6,58 @@ function applyStyles(el, styles) {
 // 1. Smooth Theme Toggle
 document.head.insertAdjacentHTML('beforeend', `<style>body[data-theme]{transition: background 0.5s, color 0.5s;}</style>`);
 
-// 2. Scroll-to-top button
+// 2. Scroll-to-top button (Updated for Mobile)
 (() => {
   const btn = document.createElement('button');
   btn.innerText = '↑';
+  
+  // Check if mobile
+  const isMobile = window.innerWidth <= 768;
+  
   applyStyles(btn, {
-    position: 'fixed', bottom: '30px', right: '30px', padding: '12px 16px', fontSize: '20px',
-    borderRadius: '50%', border: 'none', background: '#333', color: '#fff', cursor: 'pointer',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.2)', opacity: '0', pointerEvents: 'none',
-    transition: 'opacity 0.3s', zIndex: '9999'
+    position: 'fixed', 
+    bottom: isMobile ? '20px' : '30px', 
+    right: isMobile ? '20px' : '30px', 
+    padding: isMobile ? '10px 14px' : '12px 16px', 
+    fontSize: isMobile ? '18px' : '20px',
+    borderRadius: '50%', 
+    border: 'none', 
+    background: '#667eea', 
+    color: '#fff', 
+    cursor: 'pointer',
+    boxShadow: '0 4px 15px rgba(102, 126, 234, 0.3)', 
+    opacity: '0', 
+    pointerEvents: 'none',
+    transition: 'all 0.3s ease', 
+    zIndex: '9999',
+    width: isMobile ? '45px' : '50px',
+    height: isMobile ? '45px' : '50px'
   });
+  
   document.body.appendChild(btn);
+  
   window.addEventListener('scroll', () => {
     let show = window.scrollY > 200;
     btn.style.opacity = show ? '1' : '0';
     btn.style.pointerEvents = show ? 'auto' : 'none';
+    btn.style.transform = show ? 'scale(1)' : 'scale(0.8)';
   });
+  
   btn.onclick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    showToast('Back to top!');
+    showToast('Back to top! 🚀');
   };
+  
+  // Update button size on resize
+  window.addEventListener('resize', () => {
+    const mobile = window.innerWidth <= 768;
+    btn.style.bottom = mobile ? '20px' : '30px';
+    btn.style.right = mobile ? '20px' : '30px';
+    btn.style.fontSize = mobile ? '18px' : '20px';
+    btn.style.width = mobile ? '45px' : '50px';
+    btn.style.height = mobile ? '45px' : '50px';
+    btn.style.padding = mobile ? '10px 14px' : '12px 16px';
+  });
 })();
 
 // 3. Page Load Animation
@@ -51,22 +83,42 @@ document.head.insertAdjacentHTML('beforeend', `<style>body[data-theme]{transitio
 })();
 
 // 7. Toast
+// Mobile Toast Optimization
 function showToast(msg) {
   const toast = document.createElement('div');
   toast.textContent = msg;
+  
+  const isMobile = window.innerWidth <= 768;
+  
   applyStyles(toast, {
-    position: 'fixed', bottom: '60px', left: '50%', transform: 'translateX(-50%)',
-    background: '#222', color: '#fff', padding: '10px 24px', borderRadius: '6px',
-    fontSize: '16px', boxShadow: '0 2px 8px rgba(0,0,0,0.2)', opacity: '0',
-    transition: 'opacity 0.4s', zIndex: '10002'
+    position: 'fixed', 
+    bottom: isMobile ? '80px' : '60px', 
+    left: isMobile ? '20px' : '50%', 
+    right: isMobile ? '20px' : 'auto',
+    transform: isMobile ? 'none' : 'translateX(-50%)',
+    background: 'rgba(45, 45, 45, 0.95)', 
+    color: '#fff', 
+    padding: isMobile ? '12px 20px' : '10px 24px', 
+    borderRadius: '12px',
+    fontSize: isMobile ? '14px' : '16px', 
+    boxShadow: '0 8px 25px rgba(0,0,0,0.3)', 
+    opacity: '0',
+    transition: 'all 0.4s ease', 
+    zIndex: '10002',
+    backdropFilter: 'blur(10px)',
+    border: '1px solid rgba(102, 126, 234, 0.2)',
+    textAlign: 'center'
   });
+  
   document.body.appendChild(toast);
   setTimeout(() => (toast.style.opacity = '1'), 10);
   setTimeout(() => {
     toast.style.opacity = '0';
+    toast.style.transform = isMobile ? 'translateY(20px)' : 'translateX(-50%) translateY(20px)';
     setTimeout(() => toast.remove(), 400);
-  }, 1800);
+  }, 2000);
 }
+
 // 8. Register Form Popup
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
