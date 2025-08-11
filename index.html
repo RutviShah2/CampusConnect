@@ -712,5 +712,40 @@
       }
     });
   </script>
+<script>
+    // Load and display events
+    fetch('eventPlanner.json')
+        .then(response => response.json())
+        .then(events => {
+            const eventsList = document.getElementById('events-list');
+            eventsList.innerHTML = events.map(event => `
+                <div>
+                    <h3>${event.title}</h3>
+                    <p>Date: ${event.date}</p>
+                    <p>Location: ${event.location}</p>
+                    <p>${event.description}</p>
+                </div>
+            `).join('');
+        })
+        .catch(error => console.error('Error loading eventPlanner.json:', error));
+
+    // Load and display students
+    fetch('students.json')
+        .then(response => response.json())
+        .then(students => {
+            const studentsList = document.getElementById('students-list');
+            studentsList.innerHTML = students.map(student => `
+                <div>
+                    <h3>${student.name}</h3>
+                    <p>Course: ${student.course}</p>
+                    <p>Year: ${student.year}</p>
+                    <p>Skills: ${student.skills.join(', ')}</p>
+                    <p>${student.bio}</p>
+                </div>
+            `).join('');
+        })
+        .catch(error => console.error('Error loading students.json:', error));
+</script>
+
 </body>
 </html>
