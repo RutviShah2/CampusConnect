@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CampusConnect - Your Digital Campus Hub</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@z300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     /* Universal box-sizing fix */
     *, *::before, *::after {
@@ -541,38 +541,32 @@
         <h2>Everything You Need</h2>
         <p>Discover all the amazing features that make campus life easier, more connected, and absolutely unforgettable.</p>
       </div>
-      
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">🎯</div>
           <h3 class="feature-title">Smart Dashboard</h3>
           <p class="feature-description">Get a personalized overview of your campus activities, upcoming events, academic progress, and important announcements all in one place.</p>
         </div>
-        
         <div class="feature-card">
           <div class="feature-icon">🎉</div>
           <h3 class="feature-title">Event Discovery</h3>
           <p class="feature-description">Never miss out on exciting campus events, workshops, competitions, and social gatherings. Stay updated with real-time event notifications.</p>
         </div>
-        
         <div class="feature-card">
           <div class="feature-icon">📸</div>
           <h3 class="feature-title">Memory Gallery</h3>
           <p class="feature-description">Capture and relive your favorite campus moments with our beautiful photo gallery. Share memories and connect with your college community.</p>
         </div>
-        
         <div class="feature-card">
           <div class="feature-icon">🤝</div>
           <h3 class="feature-title">Community Hub</h3>
           <p class="feature-description">Connect with fellow students, join clubs, participate in discussions, and build lasting friendships that extend beyond graduation.</p>
         </div>
-
         <div class="feature-card">
           <div class="feature-icon">📚</div>
           <h3 class="feature-title">Academic Resources</h3>
           <p class="feature-description">Access study materials, assignment deadlines, grade tracking, and academic support services. Stay on top of your educational journey with ease.</p>
         </div>
-
         <div class="feature-card">
           <div class="feature-icon">🏆</div>
           <h3 class="feature-title">Achievement Tracker</h3>
@@ -588,24 +582,8 @@
           <h2>Join Our Growing Community</h2>
           <p>Be part of a vibrant campus ecosystem that's transforming student life every day.</p>
         </div>
-        
         <div class="stats-grid" id="stats-grid">
-          <div class="stat-item">
-            <div class="stat-number" data-target="5000">0</div>
-            <div class="stat-label">Active Students</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-target="250">0</div>
-            <div class="stat-label">Campus Events</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-target="50">0</div>
-            <div class="stat-label">Student Clubs</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-target="10000">0</div>
-            <div class="stat-label">Memories Shared</div>
-          </div>
+          <!-- Stats will be loaded dynamically -->
         </div>
       </div>
     </section>
@@ -627,11 +605,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Students List -->
-    <div id="students-list"></div>
-    <!-- Events List -->
-    <div id="events-list"></div>
   </main>
 
   <footer>
@@ -643,21 +616,17 @@
     function initializeTheme() {
       const savedTheme = localStorage.getItem('campusconnect-theme') || 'light';
       document.body.setAttribute('data-theme', savedTheme);
-      
       const themeBtn = document.querySelector('.theme-toggle');
       if (themeBtn) {
         themeBtn.textContent = savedTheme === 'light' ? '🌙' : '☀️';
       }
     }
-
     function toggleTheme() {
       const body = document.body;
       const currentTheme = body.getAttribute('data-theme');
       const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      
       body.setAttribute('data-theme', newTheme);
       localStorage.setItem('campusconnect-theme', newTheme);
-      
       const btn = document.querySelector('.theme-toggle');
       if (btn) {
         btn.style.transform = 'rotate(360deg) scale(1.2)';
@@ -667,21 +636,18 @@
         }, 300);
       }
     }
-
     // Initialize theme immediately
     initializeTheme();
 
     // Animated Number Counter
     function animateNumbers() {
       const stats = document.querySelectorAll('.stat-number');
-      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const target = parseInt(entry.target.getAttribute('data-target'));
             const increment = target / 100;
             let current = 0;
-            
             const timer = setInterval(() => {
               current += increment;
               if (current >= target) {
@@ -691,14 +657,30 @@
                 entry.target.textContent = Math.floor(current).toLocaleString();
               }
             }, 20);
-            
             observer.unobserve(entry.target);
           }
         });
       });
-      
       stats.forEach(stat => observer.observe(stat));
     }
+
+    // Load and display statistics from students.json
+    fetch('students.json')
+      .then(res => res.json())
+      .then(stats => {
+        const statsGrid = document.getElementById('stats-grid');
+        if (!statsGrid) return;
+        statsGrid.innerHTML = '';
+        stats.forEach(stat => {
+          statsGrid.innerHTML += `
+            <div class="stat-item">
+              <div class="stat-number" data-target="${stat.count}">0</div>
+              <div class="stat-label">${stat.stat}</div>
+            </div>
+          `;
+        });
+        if (typeof animateNumbers === 'function') animateNumbers();
+      });
 
     // Initialize animations when page loads
     document.addEventListener('DOMContentLoaded', () => {
@@ -711,120 +693,10 @@
       const scrolled = window.pageYOffset;
       const parallax = document.querySelector('.hero');
       const speed = scrolled * 0.5;
-      
       if (parallax) {
         parallax.style.transform = `translateY(${speed}px)`;
       }
     });
   </script>
-<script>
-    // Load and display events
-    fetch('eventPlanner.json')
-        .then(response => response.json())
-        .then(events => {
-            const eventsList = document.getElementById('events-list');
-            eventsList.innerHTML = events.map(event => `
-                <div>
-                    <h3>${event.title}</h3>
-                    <p>Date: ${event.date}</p>
-                    <p>Location: ${event.location}</p>
-                    <p>${event.description}</p>
-                </div>
-            `).join('');
-        })
-        .catch(error => console.error('Error loading eventPlanner.json:', error));
-
-    // Load and display students
-    fetch('students.json')
-        .then(response => response.json())
-        .then(students => {
-            const studentsList = document.getElementById('students-list');
-            studentsList.innerHTML = students.map(student => `
-                <div>
-                    <h3>${student.name}</h3>
-                    <p>Course: ${student.course}</p>
-                    <p>Year: ${student.year}</p>
-                    <p>Skills: ${student.skills.join(', ')}</p>
-                    <p>${student.bio}</p>
-                </div>
-            `).join('');
-        })
-        .catch(error => console.error('Error loading students.json:', error));
-</script>
-<script>
-fetch('students.json')
-  .then(res => res.json())
-  .then(data => {
-    const stats = data.statistics;
-    const statsGrid = document.getElementById('stats-grid'); // Make sure you have a container with this ID
-    if (!statsGrid) return;
-    statsGrid.innerHTML = '';
-    stats.forEach(stat => {
-      statsGrid.innerHTML += `
-        <div class="stat-item">
-          <div class="stat-number" data-target="${stat.count}">0</div>
-          <div class="stat-label">${stat.stat}</div>
-        </div>
-      `;
-    });
-    // Optionally, re-run your number animation here
-    if (typeof animateNumbers === 'function') animateNumbers();
-  });
-</script>
-<script>
-  // Statistics from students.json
-  fetch('students.json')
-    .then(res => res.json())
-    .then(data => {
-      const stats = data.statistics;
-      const statsGrid = document.getElementById('stats-grid');
-      if (!statsGrid) return;
-      statsGrid.innerHTML = '';
-      stats.forEach(stat => {
-        statsGrid.innerHTML += `
-          <div class="stat-item">
-            <div class="stat-number" data-target="${stat.count}">0</div>
-            <div class="stat-label">${stat.stat}</div>
-          </div>
-        `;
-      });
-      if (typeof animateNumbers === 'function') animateNumbers();
-    });
-
-  // Students List
-  fetch('students.json')
-    .then(res => res.json())
-    .then(data => {
-      const students = data.students;
-      const studentsList = document.getElementById('students-list');
-      if (!studentsList) return;
-      studentsList.innerHTML = '<h2>Our Students</h2>' + students.map(student => `
-        <div class="student-card">
-          <h3>${student.name}</h3>
-          <p>Course: ${student.course}</p>
-          <p>Year: ${student.year}</p>
-          <p>Skills: ${student.skills.join(', ')}</p>
-          <p>${student.bio}</p>
-        </div>
-      `).join('');
-    });
-
-  // Events List
-  fetch('eventPlanner.json')
-    .then(res => res.json())
-    .then(events => {
-      const eventsList = document.getElementById('events-list');
-      if (!eventsList) return;
-      eventsList.innerHTML = '<h2>Upcoming Events</h2>' + events.map(event => `
-        <div class="event-card">
-          <h3>${event.title}</h3>
-          <p>Date: ${event.date}</p>
-          <p>Location: ${event.location}</p>
-          <p>${event.description}</p>
-        </div>
-      `).join('');
-    });
-</script>
-
 </body>
 </html>

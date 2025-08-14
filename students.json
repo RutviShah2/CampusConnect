@@ -1,39 +1,18 @@
-{
-  "students": [
-    {
-      "id": 101,
-      "name": "Rutvi Shah",
-      "course": "B.Tech CSE",
-      "year": 3,
-      "skills": ["HTML", "CSS", "JavaScript"],
-      "bio": "Frontend enthusiast who loves chocolate and music."
-    },
-    {
-      "id": 102,
-      "name": "Poojan Shah",
-      "course": "B.Tech IT",
-      "year": 2,
-      "skills": ["Python", "Data Science"],
-      "bio": "Machine learning hobbyist and coffee lover."
-    }
-  ],
-  "statistics": [
-    {
-      "stat": "Active Students",
-      "count": 5000
-    },
-    {
-      "stat": "Campus Events",
-      "count": 250
-    },
-    {
-      "stat": "Student Clubs",
-      "count": 50
-    },
-    {
-      "stat": "Memories Shared",
-      "count": 10000
-    }
-  ]
-}
-
+[
+  {
+    "stat": "Active Students",
+    "count": 5000
+  },
+  {
+    "stat": "Campus Events",
+    "count": 250
+  },
+  {
+    "stat": "Student Clubs",
+    "count": 50
+  },
+  {
+    "stat": "Memories Shared",
+    "count": 10000
+  }
+]
