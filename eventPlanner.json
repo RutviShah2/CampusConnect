@@ -3,28 +3,78 @@
     "id": 1,
     "title": "Hackathon 2025",
     "date": "2025-08-20",
+    "time": "10:00 AM - 10:00 PM",
     "location": "Main Auditorium",
-    "description": "24-hour coding event with prizes and mentorship."
+    "cost": "Free Entry",
+    "description": "24-hour coding event with prizes and mentorship.",
+    "details": "Form a team or join solo, solve real-world problems, and compete for exciting prizes. Mentors from top tech companies will be available throughout the event. Meals and snacks provided.",
+    "organizer": "Coding Club",
+    "tags": ["Tech", "Competition"],
+    "maxParticipants": 200
   },
   {
     "id": 2,
     "title": "Music Fest",
     "date": "2025-09-05",
+    "time": "6:00 PM - 11:00 PM",
     "location": "Open Ground",
-    "description": "Evening of live performances, food stalls and games."
+    "cost": "₹100",
+    "description": "Evening of live performances, food stalls and games.",
+    "details": "Enjoy live bands, solo artists, and DJ sets. Food trucks and fun games will be available for all. Bring your friends and dance the night away under the stars.",
+    "organizer": "Cultural Committee",
+    "tags": ["Music", "Cultural", "Fun"],
+    "maxParticipants": 500
   },
   {
     "id": 3,
     "title": "Tech Conference",
     "date": "2025-10-15",
+    "time": "9:00 AM - 5:00 PM",
     "location": "Conference Hall A",
-    "description": "A gathering of industry leaders to discuss the future of technology."
+    "cost": "Free Entry",
+    "description": "A gathering of industry leaders to discuss the future of technology.",
+    "details": "Keynote speeches, panel discussions, and networking sessions with industry experts. Open to all students and faculty. Certificates for all attendees.",
+    "organizer": "Tech Society",
+    "tags": ["Tech", "Conference", "Networking"],
+    "maxParticipants": 300
   },
   {
     "id": 4,
     "title": "Art Exhibition",
     "date": "2025-11-10",
+    "time": "11:00 AM - 4:00 PM",
     "location": "Gallery Room",
-    "description": "Showcasing local artists and their latest works."
+    "cost": "Free Entry",
+    "description": "Showcasing local artists and their latest works.",
+    "details": "Paintings, sculptures, and digital art from students and local artists. Vote for your favorite piece. Art supplies and refreshments provided.",
+    "organizer": "Fine Arts Club",
+    "tags": ["Art", "Exhibition", "Creativity"],
+    "maxParticipants": 150
+  },
+  {
+    "id": 5,
+    "title": "Sports Meet",
+    "date": "2025-12-01",
+    "time": "8:00 AM - 6:00 PM",
+    "location": "Sports Complex",
+    "cost": "Free Entry",
+    "description": "Annual sports competition for all departments.",
+    "details": "Track and field, football, basketball, and more. Departmental teams compete for the championship trophy. Medals and certificates for winners.",
+    "organizer": "Sports Council",
+    "tags": ["Sports", "Competition", "Outdoor"],
+    "maxParticipants": 400
+  },
+  {
+    "id": 6,
+    "title": "Literature Fest",
+    "date": "2026-01-15",
+    "time": "10:00 AM - 3:00 PM",
+    "location": "Auditorium B",
+    "cost": "₹50",
+    "description": "Celebrating literature with talks, readings, and workshops.",
+    "details": "Meet published authors, participate in poetry slams, and attend creative writing workshops. Book stalls and open mic sessions throughout the day.",
+    "organizer": "Literary Society",
+    "tags": ["Literature", "Workshop", "Reading"],
+    "maxParticipants": 250
   }
 ]
