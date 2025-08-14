@@ -13,19 +13,18 @@
     "location": "Open Ground",
     "description": "Evening of live performances, food stalls and games."
   },
-
-    {
-        "id": 3,
-        "title": "Tech Conference",
-        "date": "2025-10-15",
-        "location": "Conference Hall A",
-        "description": "A gathering of industry leaders to discuss the future of technology."
-    },
-    {
-        "id": 4,
-        "title": "Art Exhibition",
-        "date": "2025-11-10",
-        "location": "Gallery Room",
-        "description": "Showcasing local artists and their latest works."
-    }
-    ]
+  {
+    "id": 3,
+    "title": "Tech Conference",
+    "date": "2025-10-15",
+    "location": "Conference Hall A",
+    "description": "A gathering of industry leaders to discuss the future of technology."
+  },
+  {
+    "id": 4,
+    "title": "Art Exhibition",
+    "date": "2025-11-10",
+    "location": "Gallery Room",
+    "description": "Showcasing local artists and their latest works."
+  }
+]
