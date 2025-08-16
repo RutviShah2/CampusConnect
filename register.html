@@ -296,27 +296,7 @@
     initializeTheme();
     document.addEventListener('DOMContentLoaded', initializeTheme);
 
-    // Form validation and submission
-    document.getElementById('registerForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirmPassword').value;
-      
-      if (password !== confirmPassword) {
-        alert('Passwords do not match! Please try again.');
-        return;
-      }
-      
-      if (password.length < 6) {
-        alert('Password must be at least 6 characters long.');
-        return;
-      }
-      
-      // Simulate successful registration
-      alert('Welcome to CampusConnect! 🎉 Your account has been created successfully!');
-      window.location.href = 'dashboard.html';
-    });
+   
   </script>
 </body>
 </html>
