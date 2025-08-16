@@ -108,7 +108,7 @@ CampusConnect/
 ## 👤 Author
 
 **Rutvi Shah**
-- 🎓 Student & Full Stack Developer
+- 🎓 Student & Aspiring Developer
 - 💡 Passionate about creating digital solutions for campus life
 
 ---
