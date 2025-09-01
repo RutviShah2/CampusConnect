@@ -131,16 +131,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="confirmation-icon">✅</div>
         <h2>Registration Successful!</h2>
         <p>
-          Thank you, <strong><?php echo $data['fullName']; ?></strong>, for joining <span style="color:#667eea;font-weight:600;">CampusConnect</span>.<br>
+          Thank you,
+           <strong><?php echo $data['fullName']; ?></strong>, for joining <span style="color:#667eea;font-weight:600;">CampusConnect</span>.<br>
           We’ve received your registration.<br>
           <span style="color:#48c6ef;">Welcome to the community!</span>
         </p>
         <div class="confirmation-details">
-          <div><strong>Email:</strong> <?php echo $data['email']; ?></div>
-          <div><strong>Student ID:</strong> <?php echo $data['studentId']; ?></div>
-          <div><strong>Department:</strong> <?php echo ucfirst(str_replace('-', ' ', $data['department'])); ?></div>
-          <div><strong>Year:</strong> <?php echo ucfirst($data['year']); ?></div>
-          <div><strong>Registered at:</strong> <?php echo $data['registered_at']; ?></div>
+          <div><strong>Email:</strong>
+           <?php echo $data['email']; ?>
+          </div>
+          <div><strong>Student ID:</strong>
+           <?php echo $data['studentId']; ?>
+          </div>
+          <div><strong>Department:</strong>
+           <?php echo ucfirst(str_replace('-', ' ', $data['department'])); ?>
+          </div>
+          <div><strong>Year:</strong>
+           <?php echo ucfirst($data['year']); ?>
+          </div>
+          <div><strong>Registered at:</strong>
+           <?php echo $data['registered_at']; ?>
+          </div>
         </div>
         <a href="dashboard.html" class="confirmation-btn">Go to Dashboard</a>
         <div class="confirmation-links">

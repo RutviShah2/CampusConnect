@@ -105,24 +105,12 @@ CampusConnect/
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
 
 ## 👤 Author
 
 **Rutvi Shah**
-- 🎓 Student & Full Stack Developer
+- 🎓 Student & Aspiring Developer
 - 💡 Passionate about creating digital solutions for campus life
-
----
-
-## 📞 Support
-
-- 📧 **Email**: support@campusconnect.in
-- 🐛 **Issues**: [GitHub Issues](https://github.com/yourusername/campusconnect/issues)
 
 ---
 
