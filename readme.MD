@@ -105,7 +105,6 @@ CampusConnect/
 
 ---
 
-
 ## 👤 Author
 
 **Rutvi Shah**
@@ -113,7 +112,6 @@ CampusConnect/
 - 💡 Passionate about creating digital solutions for campus life
 
 ---
-
 <div align="center">
   <h3>🌟 Star this repository if you found it helpful! 🌟</h3>
   <p>Made with ❤️ by Rutvi Shah</p>
