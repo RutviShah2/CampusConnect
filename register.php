@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Collect form data safely
+
     $data = [
         'fullName' => htmlspecialchars($_POST['fullName']),
         'email' => htmlspecialchars($_POST['email']),
