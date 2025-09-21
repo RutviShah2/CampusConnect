@@ -113,7 +113,7 @@ if (isset($_SESSION['username'])) {
 </head>
 <body>
   <div class="login-container">
-    <form action="login_process.php" method="POST" class="login-form">
+    <form action="logout.php" method="POST" class="login-form">
       <h2>Login</h2>
       <input type="text" name="username" placeholder="Username" required />
       <input type="password" name="password" placeholder="Password" required />
