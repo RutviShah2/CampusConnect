@@ -2,10 +2,10 @@
 // Database connection for CampusConnect
 $servername = "localhost";
 $username = "root";
-$password = "rutvi";
+$password = "";
 $dbname = "mydb";
 
-$conn = new mysqli($servername, $username, $rutvi, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
